@@ -6,7 +6,7 @@
 /*   By: mhaddi <mhaddi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 16:48:05 by mhaddi            #+#    #+#             */
-/*   Updated: 2021/06/29 18:21:38 by mhaddi           ###   ########.fr       */
+/*   Updated: 2021/07/05 13:42:04 by mhaddi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,11 @@ void	check_args(char **args)
 			|| ft_strncmp(args[i], "+", 1) == 0)
 		{
 			tmp = ft_strdup(remove_trailing_zeros(strip_one_plus(args[i])));
+			check_error(tmp[0] == '-');
 			free(args[i]);
 			args[i] = tmp;
 		}
+		// TO-DO: if first of args[i] is '-00' => remove trailing zeros than add negative again?
 		check_error(args[i][0] == '\0');
 		check_error(!is_integer(args[i]));
 		check_error(is_over_int(args[i]));
